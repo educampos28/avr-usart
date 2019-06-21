@@ -332,6 +332,7 @@ void Usart::begin( const uint32_t baud, uint16_t rxBuffMaxLen, UsartModeEL mode)
   uint16_t bRate = 0;
   uint8_t bMode = 0;
   // initialize the buffer
+  this->rxMaxLength = rxBuffMaxLen;
   this->rxBuffStart = (uint8_t*)malloc( this->rxMaxLength);
   this->rxBuffEnd = this->rxBuffStart + this->rxMaxLength;
   this->rxDataStart = this->rxBuffStart;
@@ -339,7 +340,7 @@ void Usart::begin( const uint32_t baud, uint16_t rxBuffMaxLen, UsartModeEL mode)
   this->rxDataEnd = this->rxBuffStart;
   this->rxLength = 0;
   this->rxLostBytesNr = 0;
-  this->rxMaxLength = rxBuffMaxLen;
+  
   // store baud rate
   this->baud = baud;
   // compute baud rate value for UBRR register
